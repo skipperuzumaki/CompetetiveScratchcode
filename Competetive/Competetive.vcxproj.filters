@@ -21,5 +21,11 @@
     <ClCompile Include="Competetive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Program.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Parser.py" />
   </ItemGroup>
 </Project>

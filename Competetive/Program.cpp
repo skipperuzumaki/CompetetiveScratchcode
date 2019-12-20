@@ -2,19 +2,24 @@
 
 //Includes
 #include <iostream>
+#include <iostream>
 #include <stdio.h>
 #include <chrono>
 #include <string>
 #include <vector>
 //Namespaces
 using namespace std;
+using namespace std;
 using namespace chrono;
 //Globals
+int k;
 vector<steady_clock::time_point> Timings;
 
 void Program()
 {
 	//Code
+	int o;
+	Timings.push_back(high_resolution_clock::now()); //timing
 }
 
 double time(steady_clock::time_point start, steady_clock::time_point stop) {

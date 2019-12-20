@@ -1,7 +1,5 @@
-//Competetive.cpp : Please do not remove comments marked essential
-//Please Place Your  Include File within //Include and //EndI
-//Please Place Your Namespace withn //Namespaces and //EndN
-//Use //time to check execution time till your comment
+//Competetive.cpp : Please do not remove comments marked (Essential)
+//comment //time to add checkpoints in time calculation
 
 //Includes (Essential)
 #include <iostream>
@@ -11,7 +9,14 @@
 using namespace std;
 //EndN (Essential)
 
-int Code() {
-	// Code
-	return 0;
+//Globals (Essential)
+int k;
+//EndG (Essential)
+
+void Code() {
+	int o;
+	//time
+//EndCode (Essential) all code before this
 }
+
+//ENDFILE (Essential)
