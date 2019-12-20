@@ -1,25 +1,17 @@
-// Competetive.cpp : Your Program Goes in the Program() function
-//
+//Competetive.cpp : Please do not remove comments marked essential
+//Please Place Your  Include File within //Include and //EndI
+//Please Place Your Namespace withn //Namespaces and //EndN
+//Use //time to check execution time till your comment
 
+//Includes (Essential)
 #include <iostream>
-#include <stdio.h>
-#include <chrono>
+//EndI (Essential)
+
+//Namespaces (Essential)
 using namespace std;
-using namespace chrono;
+//EndN (Essential)
 
-void Program()
-{
-	// Your Code Here
-}
-
-int main()
-{
-	auto start = high_resolution_clock::now();
-	Program();
-	auto stop = high_resolution_clock::now();
-	auto ds  = duration_cast<seconds>(stop - start);
-	auto dn = duration_cast<nanoseconds>(stop - start);
-	cout << endl << "Execution Time in seconds = " << ds.count() << "." << dn.count() % int(1e+9) << endl;
+int Code() {
+	// Code
 	return 0;
 }
-
