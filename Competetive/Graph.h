@@ -2,10 +2,11 @@
 #include <list> 
 #include <vector>
 #include <algorithm>
+#include <stack>
 
 using namespace std;
 
-class Graph // optimise add for diff scenarios
+class Graph // TODO add jhonsons algo to replace floyd warshall TODO MAYBE optimise add for diff scenarios
 {
 private:
 	//For Kruskals
@@ -62,29 +63,76 @@ private:
 	vector<vector<int>> DistMat;
 	vector<vector<int>> DjMat;
 	vector<Edge> Edges;
-	vector<int> DFSUtil(int v, bool visited[],vector<int> ret);
+	void DFSUtil(int v, bool visited[],vector<int>& ret);
+	void topologicalSortUtil(int v, bool visited[], stack<int>& Stack);
+	void APUtil(int u, bool visited[], int disc[], int low[], int parent[], vector<bool>& ap, vector<pair<int,int>>& bridge);
 	int minDistance(vector<int> dist, bool sptSet[]);
 public:
 	Graph(int V);
 	void addEdge(int v, int w, int l = 0);
 	vector<int> BFS(int s);
 	vector<int> DFS(int v);
+	stack<int> topologicalSort();
+	pair<vector<bool>,vector<pair<int,int>>> ArticulationPoints();
 	vector<int> dijkstra(int src);
 	vector<vector<int>> floydWarshall();
 	vector<Edge> Kruskal();
 };
 
-vector<int> Graph::DFSUtil(int v, bool visited[], vector<int> ret)
+void Graph::DFSUtil(int v, bool visited[], vector<int>& ret)
 {
 	visited[v] = true;
 	ret.push_back(v);
 	list<int>::iterator i;
 	for (i = adj[v].begin(); i != adj[v].end(); ++i) {
 		if (!visited[*i]) {
-			ret = DFSUtil(*i, visited, ret);
+			DFSUtil(*i, visited, ret);
 		}
 	}
-	return ret;
+}
+
+void Graph::topologicalSortUtil(int v, bool visited[], stack<int>& Stack)
+{
+	visited[v] = true;
+	list<int>::iterator i;
+	for (i = adj[v].begin(); i != adj[v].end(); ++i) {
+		if (!visited[*i]) {
+			topologicalSortUtil(*i, visited, Stack);
+		}
+	}
+	Stack.push(v);
+}
+
+void Graph::APUtil(int u, bool visited[], int disc[], int low[], int parent[], vector<bool>& ap, vector<pair<int, int>>& bridge)
+{
+	static int time = 0;
+	int children = 0;
+	visited[u] = true;
+	disc[u] = low[u] = ++time;
+	list<int>::iterator i;
+	for (i = adj[u].begin(); i != adj[u].end(); ++i)
+	{
+		int v = *i;
+		if (!visited[v])
+		{
+			children++;
+			parent[v] = u;
+			APUtil(v, visited, disc, low, parent, ap, bridge);
+			low[u] = min(low[u], low[v]);
+			if (parent[u] == -1 && children > 1) {
+				ap[u] = true;
+			}
+			if (parent[u] != -1 && low[v] >= disc[u]) {
+				ap[u] = true;
+			}
+			if (low[v] > disc[u]) {
+				auto p = make_pair(u, v);
+				bridge.push_back(p);
+			}
+		}
+		else if (v != parent[u])
+			low[u] = min(low[u], disc[v]);
+	}
 }
 
 Graph::Graph(int V)
@@ -147,10 +195,54 @@ vector<int> Graph::DFS(int v)
 {
 	vector<int> ret;
 	bool* visited = new bool[V];
-	for (int i = 0; i < V; i++)
+	for (int i = 0; i < V; i++) {
 		visited[i] = false;
-	ret = DFSUtil(v, visited,ret);
+	}
+	DFSUtil(v, visited,ret);
 	return ret;
+}
+
+stack<int> Graph::topologicalSort()
+{
+	stack<int> res;
+	bool* visited = new bool[V];
+	for (int i = 0; i < V; i++) {
+		visited[i] = false;
+	}
+	for (int i = 0; i < V; i++) {
+		if (visited[i] == false) {
+			topologicalSortUtil(i, visited, res);
+		}
+	}
+	return res;
+}
+
+pair<vector<bool>,vector<pair<int,int>>> Graph::ArticulationPoints()
+{
+	vector<bool> ap(V,false);
+	vector<pair<int, int>> bridge;
+	bool* visited = new bool[V];
+	int* disc = new int[V];
+	int* low = new int[V];
+	int* parent = new int[V];
+
+	// Initialize parent and visited, and ap(articulation point) arrays 
+	for (int i = 0; i < V; i++)
+	{
+		parent[i] = -1;
+		visited[i] = false;
+		ap[i] = false;
+	}
+
+	// Call the recursive helper function to find articulation points 
+	// in DFS tree rooted with vertex 'i' 
+	for (int i = 0; i < V; i++) {
+		if (visited[i] == false) {
+			APUtil(i, visited, disc, low, parent, ap, bridge);
+		}
+	}
+	auto p = make_pair(ap, bridge);
+	return p;
 }
 
 int Graph::minDistance(vector<int> dist, bool sptSet[])
