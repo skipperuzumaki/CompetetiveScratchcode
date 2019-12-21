@@ -27,5 +27,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Parser.py" />
+    <None Include="App.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -156,7 +156,11 @@
     <ClCompile Include="Time.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.py" />
     <None Include="Parser.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graph.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

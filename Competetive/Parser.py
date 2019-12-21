@@ -18,6 +18,8 @@ def Parse():
             line = code.readline()
             if '//Includes' in line:
                 i = True
+            elif '//Additional' in line:
+                i = True
             elif '//Namespaces' in line:
                 n = True
             elif '//Globals' in line:
