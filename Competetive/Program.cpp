@@ -13,16 +13,16 @@ using namespace std;
 using namespace chrono;
 //Globals
 int k;
-vector<steady_clock::time_point> Timings;
+vector<system_clock::time_point> Timings;
 
 void Program()
 {
 	//Code
-	int o;
+	cout << 0;
 	Timings.push_back(high_resolution_clock::now()); //timing
 }
 
-double time(steady_clock::time_point start, steady_clock::time_point stop) {
+double time(system_clock::time_point start, system_clock::time_point stop) {
 	auto ds = duration_cast<seconds>(stop - start);
 	auto dn = duration_cast<nanoseconds>(stop - start);
 	double ns = double(double(dn.count() % int(1e9)) / double(1e9));
@@ -34,6 +34,8 @@ int main()
 	Timings.push_back(high_resolution_clock::now());
 	Program();
 	Timings.push_back(high_resolution_clock::now());
+	cout << endl;
+	cout << "Timings" << endl;
 	for (int i = 1; i < Timings.size(); i++) {
 		cout << time(Timings[0], Timings[i]) << endl;
 	}

@@ -14,7 +14,7 @@ int k;
 //EndG (Essential)
 
 void Code() {
-	int o;
+	cout << 0;
 	//time
 //EndCode (Essential) all code before this
 }

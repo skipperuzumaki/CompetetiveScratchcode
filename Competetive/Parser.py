@@ -57,7 +57,7 @@ namespaces = "".join(namespaces)
 Globals = "".join(Globals)
 codes = "".join(codes)
 
-f = open("Time.cpp", "r")
+f = open("Time.txt", "r")
 lines = f.readlines()
 f.close()
 
@@ -80,4 +80,14 @@ f = open("Program.cpp", "w")
 lines = "".join(lines)
 f.write(lines)
 f.close()
-            
+
+Path = '"' + os.path.abspath(__file__) + '"'
+wPath = '"' + os.path.abspath(__file__) + '\Program.cpp"'
+
+os.system("cd "+Path)
+os.system("g++ Program.cpp 2> Output.log")
+try:
+    os.system("a")
+    os.remove("a.exe")
+except:
+    os.system("output.log")
