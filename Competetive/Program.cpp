@@ -12,14 +12,15 @@ using namespace std;
 using namespace std;
 using namespace chrono;
 //Globals
-int k;
 vector<system_clock::time_point> Timings;
 
 void Program()
 {
 	//Code
-	cout << 0;
-	Timings.push_back(high_resolution_clock::now()); //timing
+	for (int i = 0; i < 1e9; ++i)
+	{
+		i++;
+	}
 }
 
 double time(system_clock::time_point start, system_clock::time_point stop) {

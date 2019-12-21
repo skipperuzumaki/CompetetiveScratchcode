@@ -10,12 +10,10 @@ using namespace std;
 //EndN (Essential)
 
 //Globals (Essential)
-int k;
 //EndG (Essential)
 
 void Code() {
-	cout << 0;
-	//time
+	//Code
 //EndCode (Essential) all code before this
 }
 
