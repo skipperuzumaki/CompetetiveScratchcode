@@ -1,3 +1,9 @@
+// Final.cpp : Used to produce final output
+
+//Includes
+#include <iostream>
+#include <iostream>
+//Additional
 #include <list> 
 #include <vector>
 #include <algorithm>
@@ -337,3 +343,22 @@ vector<Graph::Edge> Graph::Kruskal()
 
 	return result;
 }
+//Namespaces
+using namespace std;
+using namespace std;
+//Globals
+Graph G(10);
+
+void Program()
+{
+	//Code
+	//Code
+	cout << "Graph" << endl;
+}
+
+int main()
+{
+	Program();
+	return 0;
+}
+

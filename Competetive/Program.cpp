@@ -1,6 +1,7 @@
 // Time.cpp : Measures Execution time for your program
 
 //Includes
+//Includes (Essential) add STL include Files here
 #include <iostream>
 #include <iostream>
 #include <stdio.h>
@@ -17,10 +18,7 @@ vector<system_clock::time_point> Timings;
 void Program()
 {
 	//Code
-	for (int i = 0; i < 1e9; ++i)
-	{
-		i++;
-	}
+	//Code
 }
 
 double time(system_clock::time_point start, system_clock::time_point stop) {
@@ -40,9 +38,6 @@ int main()
 	for (int i = 1; i < Timings.size(); i++) {
 		cout << time(Timings[0], Timings[i]) << endl;
 	}
-	cout << "Enter Any Charecter To Exit : ";
-	char _;
-	cin >> _;
 	return 0;
 }
 
