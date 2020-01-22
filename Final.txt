@@ -1,0 +1,19 @@
+// Final.cpp : Used to produce final output
+
+#define FIN 1
+
+//Includes
+#include <iostream>
+//Additional
+//Namespaces
+using namespace std;
+//Globals
+
+//Code
+
+int main()
+{
+	Code();
+	return 0;
+}
+
